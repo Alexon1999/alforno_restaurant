@@ -30,7 +30,7 @@ import {
   validateByRestaurant,
 } from "../utilities";
 import { useHistory } from "react-router-dom";
-import axios from "axios";
+import axios from "../axios";
 import Modal, { ModalCanBeClosed } from "../components/MyModal/Modal";
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -172,7 +172,7 @@ const Paiement = () => {
 
     const { data } = await axios.post(
       // "https://texan-stripe.herokuapp.com/create-client-secret",
-      "http://localhost:8000/paiement/create-client-secret",
+      "paiement/create-client-secret",
       {
         amount: parseInt((prixTotale * 100).toFixed(2), 10),
         email,
@@ -247,7 +247,7 @@ const Paiement = () => {
 
         try {
           const commande = await axios.post(
-            "http://localhost:8000/paiement/create-commande",
+            "paiement/create-commande",
             data,
             config
           );
@@ -270,9 +270,7 @@ const Paiement = () => {
 
   const ValidationHorairesPuisPayer = async (e) => {
     e.preventDefault();
-    const { data } = await axios.get(
-      "http://localhost:8000/restaurant/info_restaurant/1"
-    );
+    const { data } = await axios.get("restaurant/info_restaurant/1");
     validateByRestaurant(data, Payer);
   };
 

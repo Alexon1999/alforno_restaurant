@@ -164,3 +164,10 @@ class UpdateCommande(APIView):
         commande.est_livre = request.data.get('est_livre', commande.est_livre)
         commande.save(update_fields=['est_livre', 'est_vue'])
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class ClientsView(generics.ListAPIView):
+    queryset = Client.objects.order_by('nom', 'prenom')
+    # queryset = Client.objects.order_by('nom', 'prenom').distinct('nom', 'prenom')
+    serializer_class = ClientSerializer
+    permission_classes = [permissions.IsAuthenticated, ]

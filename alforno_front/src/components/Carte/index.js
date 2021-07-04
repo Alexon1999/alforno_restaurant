@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import carteImg from "../../images/menu.png";
-import axios from "axios";
+import carteImg from "../../images/carte.png";
+import axios from "../../axios";
 import "./carte.css";
 
 const Carte = ({
@@ -13,9 +13,7 @@ const Carte = ({
   const [carte, setCarte] = useState([]);
 
   const fetch_categs = async () => {
-    const { data } = await axios.get(
-      "http://localhost:8000/restaurant/categories"
-    );
+    const { data } = await axios.get("restaurant/categories");
     setCarte(data);
   };
 

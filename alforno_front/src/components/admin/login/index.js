@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 import useForm from "../../../hooks/useForm";
 import {
@@ -9,7 +9,7 @@ import {
   makeStyles,
   TextField,
 } from "@material-ui/core";
-import axios from "axios";
+import axios from "../../../axios";
 import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
@@ -59,7 +59,7 @@ const Login = () => {
 
     if (username && password) {
       await axios({
-        url: `http://localhost:8000/restaurant/api/token`,
+        url: "restaurant/api/token",
         method: "post",
         //headers: {'Access-Control-Allow-Origin': '*'},
         data: { username, password },

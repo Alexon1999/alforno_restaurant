@@ -1,31 +1,22 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import useFetchCommandes from "../../../hooks/useFetchCommandes";
+import { sendRequest } from "../../../utilities";
 
 import ProductList from "../product/ProductList";
 
 const CommandeEnCours = () => {
-  const [commandes, setCommandes] = useState([]);
-
-  const fetchCommandes = async () => {
-    const { data } = await axios.get(
-      "http://localhost:8000/paiement/commande-encours"
-    );
-    setCommandes(data);
-  };
-
-  useEffect(() => {
-    fetchCommandes();
-
-    return () => {
-      setCommandes([]);
-    };
-  }, []);
+  const { commandes, fetchCommandes, fail_fn } = useFetchCommandes(
+    "get",
+    "paiement/commande-encours",
+    null
+  );
 
   const commande_est_livre = async (id) => {
-    await axios.put("http://localhost:8000/paiement/update-commande", {
-      id,
-      est_livre: true,
-    });
+    await sendRequest(
+      "put",
+      "paiement/update-commande",
+      { id, est_livre: true },
+      fail_fn
+    );
 
     fetchCommandes();
   };

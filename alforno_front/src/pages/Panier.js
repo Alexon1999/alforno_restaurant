@@ -32,6 +32,8 @@ const Panier = () => {
   const handleCommentaireChange = (e) => {
     dispatch(changeCommentaire(e.target.value));
   };
+
+  const nb_articles = getNombresArticles(baskets);
   const prixTotale = calculTotal(baskets);
 
   // TODO: horaire restau, mettre dans la bdd les horaire d'ouverture
@@ -43,8 +45,12 @@ const Panier = () => {
   };
 
   return (
-    <div className='panier'>
-      {!(baskets.produits.length + baskets.menus.length) ? (
+    <div
+      className='panier'
+      style={{
+        border: nb_articles > 0 && "1px solid rgb(201, 200, 200)",
+      }}>
+      {!nb_articles ? (
         <div className='panier__vide'>
           <h1>Votre panier est vide</h1>
           <img src={Empty} alt='empty basket' />
@@ -52,8 +58,8 @@ const Panier = () => {
       ) : (
         <div className='panier__container'>
           <h1>
-            Détail de votre panier ( {getNombresArticles(baskets)} article
-            {getNombresArticles(baskets) > 1 && "s"})
+            Détail de votre panier ( {nb_articles} article
+            {nb_articles > 1 && "s"})
           </h1>
           {baskets.produits.map((product) => {
             return <Item key={product.nom} {...product} />;

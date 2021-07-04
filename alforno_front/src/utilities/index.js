@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../axios";
 
 const smoothScroll = (to) => (e) => {
   e.preventDefault();
@@ -198,7 +198,7 @@ async function sendRequest(method, url, data = null, fail_fn = () => {}) {
       },
     });
 
-    console.log(response.data);
+    // console.log(response.data);
     return [response.data, null];
   } catch (error) {
     if (error.response.status === 401) {
@@ -207,7 +207,7 @@ async function sendRequest(method, url, data = null, fail_fn = () => {}) {
         try {
           const response = await axios({
             method: "post",
-            url: "http://localhost:8000/restaurant/api/token/refresh",
+            url: "restaurant/api/token/refresh",
             data: { refresh: refresh_token },
             headers: {
               "Content-Type": "application/json",

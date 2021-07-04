@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../../../axios";
 import "./suivi.css";
 import { useEffect, useState } from "react";
 import { splitPrix } from "../../../utilities";
@@ -10,15 +10,12 @@ const Suivi = () => {
   const aujourdhui = new Date().toLocaleDateString(); //// 11/03/2021
 
   const get_suivi_jour = async (debut, fin, setState) => {
-    const { data } = await axios.post(
-      "http://127.0.0.1:8000/paiement/stripe/transactions",
-      {
-        date: {
-          gte: debut,
-          lte: fin,
-        },
-      }
-    );
+    const { data } = await axios.post("paiement/stripe/transactions", {
+      date: {
+        gte: debut,
+        lte: fin,
+      },
+    });
 
     console.log(data);
     setState(data);

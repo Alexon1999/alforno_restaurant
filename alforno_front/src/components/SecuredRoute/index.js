@@ -1,18 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Route, Redirect } from "react-router-dom";
-import axios from "axios";
-import { setAuthToken } from "../../utilities";
+import useLocalStorageToken from "../../hooks/useLocalstorageToken";
 
 const SecuredRoute = ({ component: Component, ...otherProps }) => {
-  const token = localStorage.getItem("jwtToken");
-
-  useEffect(() => {
-    if (token) {
-      setAuthToken(localStorage.jwtToken);
-    }
-  }, []);
-
-  // console.log(axios.defaults.headers["Authorization"]);
+  const token = useLocalStorageToken();
 
   return (
     <Route

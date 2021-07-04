@@ -1,5 +1,7 @@
 .carte {
   /* position: fixed; */
+  padding-top: 10px;
+  box-shadow: rgb(200 200 200) 0px 0px 20px 0px;
 }
 .carte__image-container {
   display: flex;
@@ -8,12 +10,12 @@
 
 .carte__image-container img {
   max-width: 70%;
+  max-width: 90%;
   object-fit: contain;
 }
 
 .carte__items {
   margin-top: 15px;
-  padding: 0 30px;
   text-align: center;
 }
 .carte__item {
@@ -31,14 +33,15 @@
 
 .carte__item::before {
   position: absolute;
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   content: "";
-  background-image: url("../../images/gun.svg");
-  background-size: 80%;
+  background-image: url("../../images/pizza_slice2.svg");
+  /* background-size: 80%; */
+  background-size: 50%;
   background-position: center;
   background-repeat: no-repeat;
-  top: -6px;
+  top: -8px;
   left: 0;
   display: none;
 }

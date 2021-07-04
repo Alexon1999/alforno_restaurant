@@ -15,7 +15,7 @@ import useForm from "../../hooks/useForm";
 
 // import { db, timestamp } from "../../config/firebase";
 import ModalBootsrap from "../modal/Modal";
-import axios from "axios";
+import axios from "../../axios";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -122,13 +122,7 @@ const ContactForm = () => {
       //   createdAt: timestamp(),
       // });
 
-      await axios.post(
-        "http://localhost:8000/restaurant/create_contact/",
-        state,
-        {
-          headers: { "Content-Type": "application/json" },
-        }
-      );
+      await axios.post("restaurant/create_contact/", state);
 
       // // Envoyer email
       // emailjs

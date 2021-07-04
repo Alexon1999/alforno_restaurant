@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { addMenu } from "../../app/Redux-slices/basketsSlice";
 import { addAlert } from "../../app/Redux-slices/alertsSlice";
 import { v4 as uuidv4 } from "uuid";
-import axios from "axios";
+import axios from "../../axios";
 import { menuCanBeAdded } from "../../utilities";
 
 const ChoixCategorie = ({
@@ -91,7 +91,7 @@ const ChoixCategorie = ({
     const fetchData = async () => {
       // console.log(details_plat_au_choix.categories.map((i) => i.id));
       const { data } = await axios.post(
-        "http://localhost:8000/restaurant/produits-categories/",
+        "restaurant/produits-categories/",
 
         { categories: details_plat_au_choix.categories.map((i) => i.id) },
         {

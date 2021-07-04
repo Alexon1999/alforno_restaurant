@@ -1,5 +1,4 @@
 import React, { useRef, useMemo, useState } from "react";
-import Logo from "../../images/logo.png";
 import "./navbar.css";
 
 import { Link, useLocation, useHistory } from "react-router-dom";
@@ -15,7 +14,7 @@ import { selectBaskets } from "../../app/Redux-slices/basketsSlice";
 import { selectInfoRestaurant } from "../../app/Redux-slices/infoRestaurantSlice";
 import { IconButton } from "@material-ui/core";
 import { OverlayTrigger, Popover } from "react-bootstrap";
-import SwitchBtn from "../switch/SwitchBtn";
+import Logo from "../logo";
 
 const NavBar = () => {
   const nav = useRef(null);
@@ -27,6 +26,7 @@ const NavBar = () => {
   const [showBgNavBar, setShowBgNavBar] = useState(false);
   const baskets = useSelector(selectBaskets);
   const infoRestaurant = useSelector(selectInfoRestaurant);
+  const nb_articles = getNombresArticles(baskets);
 
   const changeBackground = () => {
     // console.log(window.scrollY);
@@ -69,11 +69,11 @@ const NavBar = () => {
           <div className='navbar__logo-container'>
             {location.pathname === "/" ? (
               <a href='#home' onClick={IsActiveButton("home")}>
-                <img className='navbar__logo' src={Logo} alt='Markus' />
+                <Logo className='navbar__logo' />
               </a>
             ) : (
               <Link to='/' onClick={pushToHome("home")}>
-                <img className='navbar__logo' src={Logo} alt='Markus' />
+                <Logo className='navbar__logo' />
               </Link>
             )}
             {/*OUVERTURE FERMETURE*/}
@@ -113,7 +113,7 @@ const NavBar = () => {
                         location.pathname === link.path ? "active " : ""
                       }basket`}>
                       <i className='fas fa-shopping-basket'></i> Panier
-                      <span>{getNombresArticles(baskets)}</span>
+                      <span>{nb_articles}</span>
                     </Link>
                     <OverlayTrigger
                       trigger={baskets.length ? ["click"] : ["hover", "focus"]}
@@ -122,34 +122,37 @@ const NavBar = () => {
                       overlay={
                         <Popover>
                           <Popover.Title as='h3' className='text-center'>
-                            Votre panier {!baskets.length && "est vide"}
+                            Votre panier {!nb_articles && "est vide"}
                           </Popover.Title>
                           {/* quand le panier est remplie*/}
-                          {!!baskets.length && (
+                          {!!nb_articles && (
                             <Popover.Content>
-                              {baskets.map((item) => (
-                                <div
-                                  style={{
-                                    display: "flex",
-                                    alignItems: "center",
-                                    padding: "10px 0",
-                                  }}>
-                                  <img
-                                    src={item.img}
-                                    alt=''
+                              {baskets.produits
+                                .concat(baskets.menus)
+                                .map((item) => (
+                                  <div
+                                    key={item.id}
                                     style={{
-                                      maxWidth: "50px",
-                                      objectFit: "contain",
-                                    }}
-                                  />
-                                  <p
-                                    style={{
-                                      margin: "0 5px 0",
+                                      display: "flex",
+                                      alignItems: "center",
+                                      padding: "10px 0",
                                     }}>
-                                    {item.title}
-                                  </p>
-                                </div>
-                              ))}
+                                    <img
+                                      src={item.img}
+                                      alt=''
+                                      style={{
+                                        maxWidth: "50px",
+                                        objectFit: "contain",
+                                      }}
+                                    />
+                                    <p
+                                      style={{
+                                        margin: "0 5px 0",
+                                      }}>
+                                      {item.nom} x{item.quantite}
+                                    </p>
+                                  </div>
+                                ))}
                             </Popover.Content>
                           )}
                         </Popover>

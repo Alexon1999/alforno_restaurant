@@ -25,8 +25,9 @@
 }
 
 .adminNav__header img {
-  width: 100px;
+  width: 120px;
   object-fit: contain;
+  margin-bottom: 5px;
 }
 
 .adminNav.active .adminNav__header img {
@@ -39,7 +40,7 @@
   border-radius: 5px;
   border: none;
   background-color: rgb(247, 69, 56);
-  color: rgb(197, 197, 197);
+  color: rgb(236, 235, 235);
 }
 
 .adminNav__links {
@@ -282,6 +283,11 @@
 @media (max-width: 500px) {
   .adminNav.active {
     width: 100%;
+  }
+
+  .adminNav.active .adminNav__header img {
+    width: 100px;
+    margin-bottom: 15px;
   }
 
   .adminNav.active .adminNav__nouvelles_commandes__indicator {

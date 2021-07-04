@@ -1,22 +1,13 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import useFetchCommandes from "../../../hooks/useFetchCommandes";
+
 import ProductList from "../product/ProductList";
 
 const HistoriqueCommande = () => {
-  const [commandes, setCommandes] = useState([]);
-
-  useEffect(() => {
-    const fetchCommandes = async () => {
-      const { data } = await axios.get(
-        "http://localhost:8000/paiement/historique-commande"
-      );
-      setCommandes(data);
-    };
-
-    fetchCommandes();
-
-    return () => setCommandes([]);
-  }, []);
+  const { commandes } = useFetchCommandes(
+    "get",
+    "paiement/historique-commande",
+    null
+  );
 
   return (
     <div className='historiqueCommande admin__container'>

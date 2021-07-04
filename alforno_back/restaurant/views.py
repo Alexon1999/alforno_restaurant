@@ -129,10 +129,9 @@ class UpdateProduitDisponibilte(APIView):
 
 
 class FormulaireContactView(generics.ListAPIView):
-    permission_classes = [permissions.IsAuthenticated, ]
-
     serializer_class = FormulaireContactSerializer
     queryset = FormulaireContact.objects.all()
+    permission_classes = [permissions.IsAuthenticated, ]
 
 
 class FormaulaireContactCreateView(generics.CreateAPIView):

@@ -47,7 +47,7 @@ TableBox.Row = ({ item, action }) => {
   return (
     <TableRow>
       <TableCell align='center'>{item.nom}</TableCell>
-      <TableCell align='center'>{item.categories?.[0]?.libelle}</TableCell>
+      <TableCell align='center'>{item.categorie.nom}</TableCell>
       <TableCell align='center'>
         <SwitchBtn val={item.disponibilite} action={action} item={item} />
       </TableCell>

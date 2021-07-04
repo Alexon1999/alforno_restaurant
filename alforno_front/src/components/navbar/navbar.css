@@ -39,8 +39,16 @@
 }
 
 .navbar__logo {
-  width: 90px;
+  width: 150px;
   object-fit: contain;
+}
+
+.navbar.active .alforno__al {
+  fill: #fff;
+}
+
+.navbar.sticky .alforno__al {
+  fill: #fff;
 }
 
 .navbar__restaurant-disponibility-container {
@@ -173,6 +181,10 @@
 
   .navbar {
     background: linear-gradient(90deg, #eb2735 0%, #eb123a 100%);
+  }
+
+  .navbar .alforno__al {
+    fill: #fff !important;
   }
 }
 @media (max-width: 600px) {

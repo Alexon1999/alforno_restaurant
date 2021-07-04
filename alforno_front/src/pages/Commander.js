@@ -6,7 +6,7 @@ import Menu from "../components/menu/Menu";
 import "./commander.css";
 
 import { IconButton } from "@material-ui/core";
-import axios from "axios";
+import axios from "../axios";
 const Commander = () => {
   const [active, setActive] = useState(1);
   const [activeCarte, setActiveCarte] = useState(false);
@@ -24,9 +24,7 @@ const Commander = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const { data } = await axios.get(
-        "http://localhost:8000/restaurant/carte/" + active + "/"
-      );
+      const { data } = await axios.get("restaurant/carte/" + active + "/");
       setDatas(data);
     };
 
@@ -35,9 +33,7 @@ const Commander = () => {
 
   useEffect(() => {
     const fetchDetailMenu = async () => {
-      const { data } = await axios.get(
-        "http://localhost:8000/restaurant/menu/" + choosedMenu + "/"
-      );
+      const { data } = await axios.get("restaurant/menu/" + choosedMenu + "/");
       setDetailMenu(data);
     };
 

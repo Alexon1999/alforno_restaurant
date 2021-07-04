@@ -18,12 +18,12 @@ import Paiement from "./pages/Paiement";
 import Felicitation from "./pages/Felicitation";
 import Admin from "./components/admin";
 import { useEffect } from "react";
-import axios from "axios";
+import axios from "./axios";
 import { useDispatch } from "react-redux";
 import { addInfo } from "./app/Redux-slices/infoRestaurantSlice";
 import Login from "./components/admin/login";
 import SecuredRoute from "./components/SecuredRoute";
-import { setAuthToken } from "./utilities";
+// import { setAuthToken } from "./utilities";
 
 // publish key c'est pour identifier votre compte stripe, ce n'est pas un secret key
 const stripePromise = loadStripe(
@@ -41,9 +41,7 @@ function App() {
 
   useEffect(() => {
     const get_info_restaurant = async () => {
-      const { data } = await axios.get(
-        "http://localhost:8000/restaurant/info_restaurant/1"
-      );
+      const { data } = await axios.get("restaurant/info_restaurant/1");
       dispatch(addInfo(data));
     };
 

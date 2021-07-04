@@ -1,13 +1,14 @@
-import Logo from "../../../images/logo.png";
+import Logo from "../../../images/alforno.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { selectAdmin, changePage } from "../../../app/Redux-slices/adminSlice";
 import { useEffect, useState } from "react";
 
 import "./menu.css";
 import { IconButton } from "@material-ui/core";
-import { Switch, useHistory, useRouteMatch } from "react-router-dom";
+import { useHistory, useRouteMatch } from "react-router-dom";
 import SwitchBtn from "../../switch/SwitchBtn";
-import axios from "axios";
+import axios from "../../../axios";
+import { sendRequest } from "../../../utilities";
 
 const AdminNav = () => {
   const admin = useSelector(selectAdmin);
@@ -25,21 +26,23 @@ const AdminNav = () => {
 
   useEffect(() => {
     const getRestaurantInfo = async () => {
-      const { data } = await axios(
-        "http://localhost:8000/restaurant/info_restaurant/1"
-      );
+      const { data } = await axios("restaurant/info_restaurant/1/");
       setInfoRestau({ id: data.id, ouvert: data.ouvert });
     };
     getRestaurantInfo();
+
+    return () => {
+      setActive(false);
+      setInfoRestau(null);
+    };
   }, []);
 
   const updateOpenRestaurant = async (id, ouvert) => {
-    await axios.put(
-      "http://localhost:8000/restaurant/update_info_restaurant/",
-      {
-        id,
-        ouvert,
-      }
+    await sendRequest(
+      "put",
+      "restaurant/update_info_restaurant/",
+      { id, ouvert },
+      () => history.push("/login")
     );
   };
 

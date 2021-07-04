@@ -25,10 +25,10 @@ const SwitchBtn = ({
         className={["switch", open ? "active" : ""].join(" ")}
         onClick={() => {
           if (!noAction) {
-            setOpen(!open);
             if (action) {
               action(item.id, !open);
             }
+            setOpen(!open);
           }
         }}>
         <div className='switch-round'></div>
