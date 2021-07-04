@@ -1,0 +1,116 @@
+.carte {
+  /* position: fixed; */
+}
+.carte__image-container {
+  display: flex;
+  justify-content: center;
+}
+
+.carte__image-container img {
+  max-width: 70%;
+  object-fit: contain;
+}
+
+.carte__items {
+  margin-top: 15px;
+  padding: 0 30px;
+  text-align: center;
+}
+.carte__item {
+  padding: 5px 0;
+  cursor: pointer;
+  position: relative;
+  font-size: 1.3rem;
+  border-radius: 5px;
+  font-weight: 500;
+}
+
+.carte__item:hover {
+  background-color: rgb(247, 246, 246);
+}
+
+.carte__item::before {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  content: "";
+  background-image: url("../../images/gun.svg");
+  background-size: 80%;
+  background-position: center;
+  background-repeat: no-repeat;
+  top: -6px;
+  left: 0;
+  display: none;
+}
+
+.carte__item.active::before {
+  display: block;
+}
+
+.carte__item.active {
+  background-color: rgb(247, 246, 246);
+}
+
+.carte__item:hover::before {
+  display: block;
+}
+
+@media (max-width: 1080px) {
+  .carte {
+    position: absolute;
+    top: 0;
+    left: -700px;
+    padding: 2rem 1rem 0;
+    /* left: -500px; */
+    background: #eb123a;
+    height: 100vh;
+    width: 45vw;
+    z-index: 99;
+    transition: all 0.5s;
+  }
+
+  .carte.active {
+    left: 0px;
+  }
+  .carte.active .carte__item.active {
+    color: rgb(41, 40, 40);
+  }
+  .carte__items {
+    overflow-y: auto;
+    height: 60vh;
+  }
+  .carte__items::-webkit-scrollbar {
+    width: 7px; /* width of the entire scrollbar */
+  }
+
+  .carte__items::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+  .carte__item {
+    color: rgb(238, 238, 238);
+  }
+
+  .carte__item:hover {
+    color: rgb(41, 40, 40);
+  }
+
+  .carte__image-container img {
+    max-width: 175px;
+  }
+}
+
+@media (max-width: 800px) {
+  .carte {
+    width: 55vw;
+  }
+}
+
+@media (max-width: 700px) {
+  .carte {
+    width: 100%;
+  }
+
+  .carte__image-container img {
+    max-width: 150px;
+  }
+}

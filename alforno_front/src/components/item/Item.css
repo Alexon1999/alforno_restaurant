@@ -1,0 +1,48 @@
+.Item {
+  width: 100%;
+  padding: 10px 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+.Item--quantite {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.Item--prixQuantite {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.Item img {
+  max-width: 20%;
+  object-fit: contain;
+}
+
+.Item--info p {
+  margin: 0;
+}
+
+.Item--info-title {
+  font-size: 1.2rem;
+}
+
+.Item--info-prix {
+  font-size: 15px;
+}
+
+.Item--info-details {
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+}
+
+.Item--quantite button {
+  margin: 0 10px;
+}
+
+@media (max-width: 600px) {
+  .Item--info-title {
+    font-size: 1rem;
+  }
+}

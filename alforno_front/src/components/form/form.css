@@ -1,0 +1,16 @@
+form {
+  max-width: 600px;
+  background: white;
+  text-align: left;
+  /* padding: 10px 40px; */
+  width: 100%;
+  border-radius: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.submit {
+  text-align: center !important;
+  background: rgb(77, 76, 76) !important;
+}

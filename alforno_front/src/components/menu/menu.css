@@ -1,0 +1,62 @@
+.commander__container__retour {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+
+.commander__container__retour_span {
+  margin-left: 10px;
+}
+
+.commander__container__compomenu__header {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.commander__container__compomenu__header img {
+  max-width: 200px;
+  max-height: 150px;
+  object-fit: contain;
+}
+
+.commander__container__compomenu__header_prix {
+  margin-top: 8px;
+  font-size: 1.3rem;
+}
+
+.choixCategorie {
+  margin-top: 1.3rem;
+}
+
+.choixCategorie__container {
+  margin-bottom: 2.5rem;
+}
+
+.choixCategorie .error {
+  margin-bottom: 10px;
+}
+
+.choixCategorie__container h2 {
+  font-size: 1.5rem;
+  color: rgb(68, 67, 67);
+}
+.choixCategorie__ajouter_btn_container {
+  display: flex;
+  justify-content: center;
+}
+.choixCategorie__ajouter_btn {
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  background-color: #18c939 !important;
+  border: none;
+  color: rgb(243, 243, 243);
+  font-weight: 500;
+  font-size: 1.2rem;
+  margin: auto;
+}
+
+.choixCategorie .MuiAccordionDetails-root {
+  display: block !important;
+}
