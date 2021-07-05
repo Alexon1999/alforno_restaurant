@@ -1,24 +1,31 @@
-import axios from "../../../axios";
 import "./suivi.css";
 import { useEffect, useState } from "react";
-import { splitPrix } from "../../../utilities";
+import { sendRequest, splitPrix } from "../../../utilities";
+import { useHistory } from "react-router-dom";
 const Suivi = () => {
   const [aujourdhui_ca, setAujourdhuiCa] = useState(null);
   const [calendar, setCalendar] = useState(new Date().toLocaleDateString());
   const [calendar_ca, setCalendarCa] = useState(null);
+  const history = useHistory();
 
   const aujourdhui = new Date().toLocaleDateString(); //// 11/03/2021
 
   const get_suivi_jour = async (debut, fin, setState) => {
-    const { data } = await axios.post("paiement/stripe/transactions", {
-      date: {
-        gte: debut,
-        lte: fin,
+    const [data, error] = await sendRequest(
+      "post",
+      "paiement/stripe/transactions",
+      {
+        date: {
+          gte: debut,
+          lte: fin,
+        },
       },
-    });
-
-    console.log(data);
-    setState(data);
+      () => history.push("/login")
+    );
+    if (!error) {
+      // console.log(data);
+      setState(data);
+    }
   };
 
   const get_time_debut_fin = (date) => {
@@ -46,12 +53,13 @@ const Suivi = () => {
     const { debut, fin } = get_time_debut_fin(new Date());
 
     get_suivi_jour(debut, fin, setAujourdhuiCa);
-  }, []);
-
-  useEffect(() => {
-    const { debut, fin } = get_time_debut_fin(new Date());
-
     get_suivi_jour(debut, fin, setCalendarCa);
+
+    return () => {
+      setCalendarCa(null);
+      setAujourdhuiCa(null);
+      setCalendar(null);
+    };
   }, []);
 
   //timestamp :  new Date("Sat 7 mars 2021").getTime() / 1000

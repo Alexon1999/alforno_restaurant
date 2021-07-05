@@ -201,7 +201,15 @@ async function sendRequest(method, url, data = null, fail_fn = () => {}) {
     // console.log(response.data);
     return [response.data, null];
   } catch (error) {
+    // unauthorized
     if (error.response.status === 401) {
+      if (error.response.data.code === "user_not_found") {
+        localStorage.removeItem("jwtToken");
+        localStorage.removeItem("jwtTokenRefresh");
+        delete axios.defaults.headers["Authorization"];
+        fail_fn();
+      }
+
       const refresh_token = localStorage.getItem("jwtTokenRefresh");
       if (refresh_token) {
         try {

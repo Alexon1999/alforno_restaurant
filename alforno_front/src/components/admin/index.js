@@ -20,6 +20,7 @@ import Contact from "./contacts/Contact";
 import bellUrl from "./sounds/bell.mp3";
 import useFetchCommandes from "../../hooks/useFetchCommandes";
 import Clients from "./bddClient/Clients";
+import DjangoAdmin from "./DjangoAdmin/DjangoAdmin";
 
 const AdminPage = () => {
   const admin = useSelector(selectAdmin);
@@ -85,6 +86,9 @@ const AdminPage = () => {
             </Route>
             <Route exact path={path + "/clients"}>
               <Clients />
+            </Route>
+            <Route exact path={path + "/adminer"}>
+              <DjangoAdmin />
             </Route>
           </Switch>
         </div>

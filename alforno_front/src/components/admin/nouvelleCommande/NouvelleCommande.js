@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { sendRequest } from "../../../utilities";
 import ProductList from "../product/ProductList";

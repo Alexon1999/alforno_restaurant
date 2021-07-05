@@ -23,6 +23,7 @@ const Card = ({
   prix,
   id,
   est_menu,
+  disponibilite,
   categorie = {},
   description,
   ingredients,
@@ -84,7 +85,11 @@ const Card = ({
     <div
       className='card__item'
       onClick={handleClick}
-      style={{ cursor: est_menu && "pointer" }}
+      style={{
+        cursor: est_menu && disponibilite && "pointer",
+        pointerEvents: disponibilite ? "all" : "none",
+        opacity: disponibilite ? 1 : 0.5,
+      }}
       onMouseEnter={() => setShowButton(true)}
       onMouseLeave={() => setShowButton(false)}>
       <h1 className='card__item__heading'>{nom}</h1>

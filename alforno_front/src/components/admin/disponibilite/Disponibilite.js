@@ -1,32 +1,27 @@
-import axios from "../../../axios";
-import { useEffect, useState } from "react";
 import TableBox from "../../table/Table";
+import useFetchData from "../../../hooks/useFetchData";
+import { sendRequest } from "../../../utilities";
 
 const proprietes = ["Nom", "Catégorie", "Disponibilité"];
 
 const Disponibilite = () => {
-  const [items, setItems] = useState([]);
-
-  const get_produits = async () => {
-    const { data } = await axios.get("restaurant/produit/");
-
-    setItems(data);
-  };
+  const [items, setItems, fail_fn] = useFetchData(
+    "get",
+    "restaurant/produit/",
+    null
+  );
 
   const updateDisponibilite = async (id, disponibilite) => {
-    await axios.put("restaurant/disponibilitePlats/", {
-      id,
-      disponibilite,
-    });
+    await sendRequest(
+      "put",
+      "restaurant/disponibilitePlats/",
+      {
+        id,
+        disponibilite,
+      },
+      fail_fn
+    );
   };
-
-  useEffect(() => {
-    get_produits();
-
-    return () => {
-      setItems([]);
-    };
-  }, []);
 
   return (
     <div className='disponibilite admin__container'>

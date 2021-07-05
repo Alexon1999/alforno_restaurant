@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import burger from "../../images/cosa-nostra.png";
 
 const CardMenu = ({
@@ -15,7 +15,6 @@ const CardMenu = ({
         change_choixProduits(idx, produit);
         setExpanded(!expanded);
       }}
-      className='cardMenu'
       style={{
         width: "150px",
         minHeight: "200px",
@@ -26,10 +25,12 @@ const CardMenu = ({
         margin: "10px",
         borderRadius: "5px",
         padding: "10px",
-        border: active ? "2px solid black" : "",
-        cursor: "pointer",
         backgroundColor: "white",
         boxShadow: "rgb(200 200 200) 0px 0px 10px 0px",
+        border: active ? "2px solid black" : "",
+        cursor: produit.disponibilite ? "pointer" : "not-allowed",
+        pointerEvents: produit.disponibilite ? "all" : "none",
+        opacity: produit.disponibilite ? 1 : 0.6,
       }}>
       <h3 style={{ fontSize: "0.9rem", textAlign: "center" }}>{produit.nom}</h3>
       <img
